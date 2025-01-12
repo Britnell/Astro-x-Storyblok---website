@@ -3,9 +3,7 @@ import { defineConfig, envField } from "astro/config";
 import storyblok from "@storyblok/astro";
 // https://astro.build/config
 import { loadEnv } from "vite";
-
 import tailwind from "@astrojs/tailwind";
-
 import cloudflare from "@astrojs/cloudflare";
 
 const { STORYBLOK_TOKEN } = loadEnv(
@@ -15,18 +13,21 @@ const { STORYBLOK_TOKEN } = loadEnv(
 );
 
 export default defineConfig({
-  integrations: [storyblok({
-    accessToken: STORYBLOK_TOKEN,
-    components: {
-      page: "storyblok/Page",
-      hero: "storyblok/Hero",
-    },
-    enableFallbackComponent: true,
-    apiOptions: {
-      region: "eu",
-    },
-  }), tailwind()],
-
+  adapter: cloudflare(),
+  integrations: [
+    storyblok({
+      accessToken: STORYBLOK_TOKEN,
+      components: {
+        page: "storyblok/Page",
+        hero: "storyblok/Hero",
+      },
+      enableFallbackComponent: true,
+      apiOptions: {
+        region: "eu",
+      },
+    }),
+    tailwind(),
+  ],
   env: {
     schema: {
       STORYBLOK_TOKEN: envField.number({
@@ -36,6 +37,4 @@ export default defineConfig({
       }),
     },
   },
-
-  adapter: cloudflare(),
 });
