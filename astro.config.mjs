@@ -6,6 +6,8 @@ import { loadEnv } from "vite";
 
 import tailwind from "@astrojs/tailwind";
 
+import cloudflare from "@astrojs/cloudflare";
+
 const { STORYBLOK_TOKEN } = loadEnv(
   process.env.NODE_ENV ?? "",
   process.cwd(),
@@ -24,6 +26,7 @@ export default defineConfig({
       region: "eu",
     },
   }), tailwind()],
+
   env: {
     schema: {
       STORYBLOK_TOKEN: envField.number({
@@ -33,4 +36,6 @@ export default defineConfig({
       }),
     },
   },
+
+  adapter: cloudflare(),
 });
