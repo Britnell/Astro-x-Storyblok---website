@@ -4,12 +4,12 @@ import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
  export const prerender = false
 
+const { slug } = Astro.params;
+
 const sbapi = useStoryblokApi()
-const {data} = await sbapi.get('cdn/stories/home', { 
+const {data} = await sbapi.get(`cdn/stories/${slug ?? 'home' }`, { 
     version: 'draft' 
 })
 const content = data.story.content 
-console.log(content);
-
 ---
 <StoryblokComponent blok={content} />
