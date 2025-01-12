@@ -1,0 +1,12 @@
+---
+import { renderRichText } from "@storyblok/astro";
+
+export type Props = {
+  text: any;
+};
+
+const { text } = Astro.props;
+const content = renderRichText(text);
+---
+
+<Fragment set:html={content} />

@@ -1,0 +1,31 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+const { blok } = Astro.props;
+import '../style/main.css';
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Campagin App</title>
+</head>
+<body >
+    <header  class="content-grid bg-gray-200 py-2">
+        <div class="flex">
+            Campagin app
+            <div class=" ml-auto flex gap-2">
+                <span>menu a</span>
+                <span>menu b</span>
+                <span>menu c</span>
+            </div>
+        </div>
+    </header>
+    <main class="content-grid" {...storyblokEditable(blok)}>
+        {blok.body?.map((blk: any) => <StoryblokComponent blok={blk} />)}
+    </main>
+</body>
+</html>

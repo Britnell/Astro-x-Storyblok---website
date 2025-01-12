@@ -1,0 +1,15 @@
+---
+import { useStoryblokApi } from '@storyblok/astro'
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+ export const prerender = false
+
+const sbapi = useStoryblokApi()
+const {data} = await sbapi.get('cdn/stories/home', { 
+    version: 'draft' 
+})
+const content = data.story.content 
+console.log(content);
+
+---
+<StoryblokComponent blok={content} />
