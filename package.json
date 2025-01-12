@@ -19,8 +19,5 @@
   "devDependencies": {
     "@types/node": "^22.10.5",
     "vite": "^6.0.7"
-  },
-  "overrides": {
-    "@rollup/rollup-linux-x64-gnu": "4.9.0"
   }
 }
